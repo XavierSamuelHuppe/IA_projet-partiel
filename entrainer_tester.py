@@ -19,7 +19,8 @@ En gros, vous allez :
 
 # Initializer vos paramètres
 a = load_datasets.load_iris_dataset(0.5)
-print (a)
+b = load_datasets.load_congressional_dataset(0.5)
+
 
 # Initializer/instanciez vos classifieurs avec leurs paramètres
 

@@ -37,7 +37,6 @@ def load_iris_dataset(train_ratio):
     # TODO : le code ici pour lire le dataset
     trainingFlowers = int(train_ratio*150)
     testingFlowers = 150 - trainingFlowers
-    print(trainingFlowers)
 
     train_list = []
     train_labels_list = []
@@ -117,12 +116,51 @@ def load_congressional_dataset(train_ratio):
     
     # Le fichier du dataset est dans le dossier datasets en attaché 
     f = open('datasets/house-votes-84.data', 'r')
-
 	
     # TODO : le code ici pour lire le dataset
-    
-	
-	# La fonction doit retourner 4 structures de données de type Numpy.
+
+    training_congres = int(train_ratio * 435)
+    testing_congres = 435 - training_congres
+
+    train_list = []
+    train_labels_list = []
+    test_list = []
+    test_labels_list = []
+    line_list = []
+
+    for ds in f:
+        if ds is not '\n':
+            lineAttributes = ds.rsplit(',')
+            lineAttributes[16] = lineAttributes[16].rstrip()
+
+            for i in range(0, 17):
+                lineAttributes[i] = conversion_labels[lineAttributes[i]]
+
+            line_list.append(lineAttributes)
+
+    random.shuffle(line_list)
+
+    for i in range(0, training_congres - 1):
+        line = line_list[i]
+        train_list.append([line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8], line[9], line[10], line[11], line[12], line[13], line[14], line[15], line[16]])
+        train_labels_list.append(line[0])
+
+    print(train_labels_list)
+    print(train_list)
+
+
+    train = np.array(train_list)
+    train_labels = np.array(train_labels_list)
+
+    for i in range(training_congres, (testing_congres + testing_congres - 1)):
+        line = line_list[i]
+        test_list.append([line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8], line[9], line[10], line[11], line[12], line[13], line[14], line[15], line[16]])
+        test_labels_list.append(line[0])
+
+    test = np.array(test_list)
+    test_labels = np.array(train_labels_list)
+
+    # La fonction doit retourner 4 structures de données de type Numpy.
     return (train, train_labels, test, test_labels)
 	
 
