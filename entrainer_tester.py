@@ -20,7 +20,8 @@ En gros, vous allez :
 # Initializer vos paramètres
 a = load_datasets.load_iris_dataset(0.5)
 b = load_datasets.load_congressional_dataset(0.5)
-
+c = load_datasets.load_monks_dataset(2)
+#print(c)
 
 # Initializer/instanciez vos classifieurs avec leurs paramètres
 

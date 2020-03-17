@@ -145,10 +145,6 @@ def load_congressional_dataset(train_ratio):
         train_list.append([line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8], line[9], line[10], line[11], line[12], line[13], line[14], line[15], line[16]])
         train_labels_list.append(line[0])
 
-    print(train_labels_list)
-    print(train_list)
-
-
     train = np.array(train_list)
     train_labels = np.array(train_labels_list)
 
@@ -158,7 +154,7 @@ def load_congressional_dataset(train_ratio):
         test_labels_list.append(line[0])
 
     test = np.array(test_list)
-    test_labels = np.array(train_labels_list)
+    test_labels = np.array(test_labels_list)
 
     # La fonction doit retourner 4 structures de données de type Numpy.
     return (train, train_labels, test, test_labels)
@@ -196,6 +192,76 @@ def load_monks_dataset(numero_dataset):
 	
 	
 	# TODO : votre code ici, vous devez lire les fichiers .train et .test selon l'argument numero_dataset
+    str_numero_dataset = str(numero_dataset)
+    str_monk_train = 'datasets/monks-' + str_numero_dataset + '.train'
+    str_monk_test = 'datasets/monks-' + str_numero_dataset + '.test'
+    f1 = open(str_monk_train, 'r')
+    f2 = open(str_monk_test, 'r')
 
-    # La fonction doit retourner 4 matrices (ou vecteurs) de type Numpy. 
+    train_list = []
+    train_labels_list = []
+    test_list = []
+    test_labels_list = []
+    line_list_train = []
+    line_list_test = []
+
+    for ds in f1:
+
+        if ds is not '\n':
+            lineAttributes = ds.rsplit(' ')
+            lineAttributes[0] = lineAttributes[1]
+            lineAttributes[1] = lineAttributes[2]
+            lineAttributes[2] = lineAttributes[3]
+            lineAttributes[3] = lineAttributes[4]
+            lineAttributes[4] = lineAttributes[5]
+            lineAttributes[5] = lineAttributes[6]
+            lineAttributes[6] = lineAttributes[7]
+            lineAttributes[8] = lineAttributes[8].rstrip()
+            lineAttributes[7] = lineAttributes[8]
+            lineAttributes.pop(8)
+            line_list_train.append(lineAttributes)
+
+    random.shuffle(line_list_train)
+
+    for i in line_list_train:
+
+        line = i
+        train_list.append(
+            [line[1], line[2], line[3], line[4], line[5], line[6], line[7]])
+        train_labels_list.append(line[0])
+
+
+
+    train = np.array(train_list)
+    train_labels = np.array(train_labels_list)
+
+    for ds in f2:
+
+        if ds is not '\n':
+            lineAttributes = ds.rsplit(' ')
+            lineAttributes[0] = lineAttributes[1]
+            lineAttributes[1] = lineAttributes[2]
+            lineAttributes[2] = lineAttributes[3]
+            lineAttributes[3] = lineAttributes[4]
+            lineAttributes[4] = lineAttributes[5]
+            lineAttributes[5] = lineAttributes[6]
+            lineAttributes[6] = lineAttributes[7]
+            lineAttributes[8] = lineAttributes[8].rstrip()
+            lineAttributes[7] = lineAttributes[8]
+            lineAttributes.pop(8)
+            line_list_train.append(lineAttributes)
+
+    random.shuffle(line_list_test)
+
+
+    for i in line_list_test:
+        line = i
+        test_list.append(
+            [line[1], line[2], line[3], line[4], line[5], line[6], line[7]])
+        test_labels_list.append(line[0])
+
+    test = np.array(test_list)
+    test_labels = np.array(test_labels_list)
+
+    # La fonction doit retourner 4 matrices (ou vecteurs) de type Numpy.
     return (train, train_labels, test, test_labels)
