@@ -218,7 +218,9 @@ def load_monks_dataset(numero_dataset):
             lineAttributes[6] = lineAttributes[7]
             lineAttributes[8] = lineAttributes[8].rstrip()
             lineAttributes[7] = lineAttributes[8]
+
             lineAttributes.pop(8)
+            lineAttributes.pop(7)
             line_list_train.append(lineAttributes)
 
     random.shuffle(line_list_train)
@@ -227,7 +229,7 @@ def load_monks_dataset(numero_dataset):
 
         line = i
         train_list.append(
-            [line[1], line[2], line[3], line[4], line[5], line[6], line[7]])
+            [line[1], line[2], line[3], line[4], line[5], line[6]])
         train_labels_list.append(line[0])
 
 
@@ -248,7 +250,9 @@ def load_monks_dataset(numero_dataset):
             lineAttributes[6] = lineAttributes[7]
             lineAttributes[8] = lineAttributes[8].rstrip()
             lineAttributes[7] = lineAttributes[8]
+
             lineAttributes.pop(8)
+            lineAttributes.pop(7)
             line_list_train.append(lineAttributes)
 
     random.shuffle(line_list_test)
@@ -257,7 +261,7 @@ def load_monks_dataset(numero_dataset):
     for i in line_list_test:
         line = i
         test_list.append(
-            [line[1], line[2], line[3], line[4], line[5], line[6], line[7]])
+            [line[1], line[2], line[3], line[4], line[5], line[6]])
         test_labels_list.append(line[0])
 
     test = np.array(test_list)
