@@ -21,6 +21,11 @@ En gros, vous allez :
 a = load_datasets.load_iris_dataset(0.5)
 b = load_datasets.load_congressional_dataset(0.5)
 c = load_datasets.load_monks_dataset(2)
+d = Knn.Knn()
+d.train(a[0], a[1])
+print(a[0][2])
+d.predict(a[0][2], 1, 5)
+
 #print(c)
 
 # Initializer/instanciez vos classifieurs avec leurs paramètres

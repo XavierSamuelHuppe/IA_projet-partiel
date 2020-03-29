@@ -9,13 +9,21 @@ je vais avoir besoin de tester les méthodes test, predict et test de votre code
 """
 
 import numpy as np
-
+from math import sqrt
+import operator
 
 # le nom de votre classe
 # BayesNaif pour le modèle bayesien naif
 # Knn pour le modèle des k plus proches voisins
 
-class Classifier:  # nom de la class à changer
+class Knn:  # nom de la class à changer
+
+    train_list = []
+    train_labels = []
+    Knn_list = []
+    train_list_length = 0
+    example_length = 0
+
 
     def __init__(self, **kwargs):
         """
@@ -23,6 +31,7 @@ class Classifier:  # nom de la class à changer
         Vous pouvez passer d'autre paramètres au besoin,
         c'est à vous d'utiliser vos propres notations
         """
+        pass
 
     def train(self, train, train_labels):  # vous pouvez rajouter d'autres attribus au besoin
         """
@@ -52,15 +61,63 @@ class Classifier:  # nom de la class à changer
         nous allons faire d'autres tests sur les données de test dans la méthode test()
         """
 
-    def predict(self, exemple, label):
+        self.train_list = train
+        self.train_labels = train_labels
+        self.train_list_length = len(self.train_list)
+        self.example_length = len(self.train_list[0])
+
+
+
+
+
+    def predict(self, exemple, label, K):
         """
         Prédire la classe d'un exemple donné en entrée
         exemple est de taille 1xm
 
         si la valeur retournée est la meme que la veleur dans label
         alors l'exemple est bien classifié, si non c'est une missclassification
-
         """
+        print("longuer de K = " + str(K))
+        for i in range(K):
+
+            euclidean_distance = 0.0
+            addition_attribut = 0.0
+
+            for j in range(self.example_length):
+
+                addition_attribut += (float(exemple[j]) - float(self.train_list[i][j])) ** 2
+
+            euclidean_distance = sqrt(addition_attribut)
+
+            self.Knn_list.append((self.train_labels[i], euclidean_distance))
+
+        print(self.Knn_list)
+
+
+
+        for i in range(0, self.train_list_length-1):
+
+            euclidean_distance = 0
+            addition_attribut = 0
+
+            for j in range(0, self.example_length-1):
+
+                addition_attribut += (float(exemple[j]) - float(self.train_list[i][j])) ** 2
+
+            euclidean_distance = sqrt(addition_attribut)
+
+
+
+
+
+
+
+
+
+
+
+
 
     def test(self, test, test_labels):
         """
