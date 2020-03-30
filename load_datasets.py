@@ -253,7 +253,7 @@ def load_monks_dataset(numero_dataset):
 
             lineAttributes.pop(8)
             lineAttributes.pop(7)
-            line_list_train.append(lineAttributes)
+            line_list_test.append(lineAttributes)
 
     random.shuffle(line_list_test)
 

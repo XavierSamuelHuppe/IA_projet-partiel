@@ -18,17 +18,22 @@ En gros, vous allez :
 """
 
 # Initializer vos paramètres
-a = load_datasets.load_iris_dataset(0.5)
+a = load_datasets.load_iris_dataset(0.5,)
 b = load_datasets.load_congressional_dataset(0.5)
 c = load_datasets.load_monks_dataset(2)
+
 d = Knn.Knn()
-d.train(c[0], c[1])
-
-#print(a[0][2])
-print(d.predict(c[0][2], 1, 5))
+d.train(a[0], a[1], 0)
+d.test(a[2], a[3], 0)
 
 
-#print(c)
+e = Knn.Knn()
+e.train(b[0], b[1], 1)
+e.test(b[2], b[3], 1)
+
+f = Knn.Knn()
+f.train(c[0], c[1], 2)
+f.test(c[2], c[3], 2)
 
 # Initializer/instanciez vos classifieurs avec leurs paramètres
 
