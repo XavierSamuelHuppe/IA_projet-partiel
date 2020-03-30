@@ -122,10 +122,54 @@ class Knn:  # nom de la class à changer
                         if prediction[0] == 1:
                             list_virginica[1] += 1
 
+            # Calcule de l'éxactitude
+            somme_bonnes_reponses = list_setosa[0] + list_versicolor[1] + list_virginica[2]
+            exacitude = somme_bonnes_reponses / self.train_list_length
+
+            # Calcule de la précision pour la classe setosa
+            somme_bonnes_reponse_setosa = list_setosa[0] +list_setosa[1] +list_setosa[2]
+            precision_setosa = list_setosa[0] / somme_bonnes_reponse_setosa
+
+            # Calcule du rappel pour la classe setosa
+            somme_reponse_setosa_total = list_setosa[0] + list_versicolor[0] +list_virginica[0]
+            rappel_setosa = list_setosa[0] / somme_reponse_setosa_total
+
+            # Calcule de la précision pour la classe versicolor
+            somme_bonnes_reponse_versicolor = list_versicolor[0] + list_versicolor[1] + list_versicolor[2]
+            precision_versicolor = list_versicolor[1] / somme_bonnes_reponse_versicolor
+
+            # Calcule du rappel pour la classe versicolor
+            somme_reponse_versicolor_total = list_setosa[1] + list_versicolor[1] + list_virginica[1]
+            rappel_versicolor = list_versicolor[1] / somme_reponse_versicolor_total
+
+            # Calcule de la précision pour la classe virginica
+            somme_bonnes_reponse_virginica = list_virginica[0] + list_virginica[1] + list_virginica[2]
+            precision_virginica = list_virginica[2] / somme_bonnes_reponse_virginica
+
+            # Calcule du rappel pour la classe virginica
+            somme_reponse_virginica_total = list_setosa[2] + list_versicolor[2] + list_virginica[2]
+            rappel_virginica = list_virginica[2] / somme_reponse_virginica_total
+
+            print("DATASET : bezdekIris")
+            print("METHODE : train\n")
             print("Matrice de confusion")
             print(list_setosa)
             print(list_versicolor)
             print(list_virginica)
+            print("\nL'éxactitude")
+            print(exacitude)
+            print("\nLa précision du tri de la classe setosa")
+            print(precision_setosa)
+            print("\nLe rappel du tri de la classe setosa")
+            print(rappel_setosa)
+            print("\nLa précision du tri de la classe versicolor")
+            print(precision_versicolor)
+            print("\nLe rappel du tri de la classe versicolor")
+            print(rappel_versicolor)
+            print("\nLa précision du tri de la classe virginica")
+            print(precision_virginica)
+            print("\nLe rappel du tri de la classe virginica")
+            print(rappel_virginica)
 
         # Test pour le dataset house-votes-84
         if dataset == 1:
@@ -160,9 +204,29 @@ class Knn:  # nom de la class à changer
                         if prediction[0] == 0:
                             list_democrat[0] += 1
 
+            # Calcule de l'éxactitude
+            somme_bonnes_reponses = list_republicain[0] + list_democrat[1]
+            exacitude = somme_bonnes_reponses / self.train_list_length
+
+            # Calcule de la précision
+            somme_nb_republican = list_republicain[0] + list_republicain[1]
+            precision = list_republicain[0] / somme_nb_republican
+
+            # Calcule du rappel
+            somme_reponse_republican = list_republicain[0] + list_democrat[0]
+            rappel = list_republicain[0] / somme_reponse_republican
+
+            print("\nDATASET : house-votes-84")
+            print("METHODE : train\n")
             print("Matrice de confusion")
             print(list_republicain)
             print(list_democrat)
+            print("\nL'éxactitude")
+            print(exacitude)
+            print("\nLa précision")
+            print(precision)
+            print("\nLe rappel")
+            print(rappel)
 
         # Test pour les datasets Monks
         if dataset == 2:
@@ -197,9 +261,29 @@ class Knn:  # nom de la class à changer
                         if int(prediction[0]) == 0:
                             list_classe_1[0] += 1
 
+            # Calcule de l'éxactitude
+            somme_bonnes_reponses = list_classe_0[0] + list_classe_1[1]
+            exacitude = somme_bonnes_reponses / self.train_list_length
+
+            # Calcule de la précision
+            somme_nb_classe_0 = list_classe_0[0] + list_classe_0[1]
+            precision = list_classe_0[0] / somme_nb_classe_0
+
+            # Calcule du rappel
+            somme_reponse_classe_0 = list_classe_0[0] + list_classe_1[0]
+            rappel = list_classe_0[0] / somme_reponse_classe_0
+
+            print("\nDATASET : house-votes-84")
+            print("METHODE : train\n")
             print("Matrice de confusion")
             print(list_classe_0)
             print(list_classe_1)
+            print("\nL'éxactitude")
+            print(exacitude)
+            print("\nLa précision")
+            print(precision)
+            print("\nLe rappel")
+            print(rappel)
 
     def predict(self, exemple, label, K):
         """
@@ -337,10 +421,55 @@ class Knn:  # nom de la class à changer
                         if prediction[0] == 1:
                             list_virginica[1] += 1
 
+            # Calcule de l'éxactitude
+            somme_bonnes_reponses = list_setosa[0] + list_versicolor[1] + list_virginica[2]
+            exacitude = somme_bonnes_reponses / self.test_list_length
+
+            # Calcule de la précision pour la classe setosa
+            somme_bonnes_reponse_setosa = list_setosa[0] + list_setosa[1] + list_setosa[2]
+            precision_setosa = list_setosa[0] / somme_bonnes_reponse_setosa
+
+            # Calcule du rappel pour la classe setosa
+            somme_reponse_setosa_total = list_setosa[0] + list_versicolor[0] + list_virginica[0]
+            rappel_setosa = list_setosa[0] / somme_reponse_setosa_total
+
+            # Calcule de la précision pour la classe versicolor
+            somme_bonnes_reponse_versicolor = list_versicolor[0] + list_versicolor[1] + list_versicolor[2]
+            precision_versicolor = list_versicolor[1] / somme_bonnes_reponse_versicolor
+
+            # Calcule du rappel pour la classe versicolor
+            somme_reponse_versicolor_total = list_setosa[1] + list_versicolor[1] + list_virginica[1]
+            rappel_versicolor = list_versicolor[1] / somme_reponse_versicolor_total
+
+            # Calcule de la précision pour la classe virginica
+            somme_bonnes_reponse_virginica = list_virginica[0] + list_virginica[1] + list_virginica[2]
+            precision_virginica = list_virginica[2] / somme_bonnes_reponse_virginica
+
+            # Calcule du rappel pour la classe virginica
+            somme_reponse_virginica_total = list_setosa[2] + list_versicolor[2] + list_virginica[2]
+            rappel_virginica = list_virginica[2] / somme_reponse_virginica_total
+
+            print("DATASET : bezdekIris")
+            print("METHODE : test\n")
             print("Matrice de confusion")
             print(list_setosa)
             print(list_versicolor)
             print(list_virginica)
+            print("\nL'éxactitude")
+            print(exacitude)
+            print("\nLa précision du tri de la classe setosa")
+            print(precision_setosa)
+            print("\nLe rappel du tri de la classe setosa")
+            print(rappel_setosa)
+            print("\nLa précision du tri de la classe versicolor")
+            print(precision_versicolor)
+            print("\nLe rappel du tri de la classe versicolor")
+            print(rappel_versicolor)
+            print("\nLa précision du tri de la classe virginica")
+            print(precision_virginica)
+            print("\nLe rappel du tri de la classe virginica")
+            print(rappel_virginica)
+
 
         # Test pour le dataset house-votes-84
         if dataset == 1:
@@ -375,9 +504,30 @@ class Knn:  # nom de la class à changer
                         if prediction[0] == 0:
                             list_democrat[0] += 1
 
+            # Calcule de l'éxactitude
+            somme_bonnes_reponses = list_republicain[0] + list_democrat[1]
+            exacitude = somme_bonnes_reponses / self.test_list_length
+
+            # Calcule de la précision
+            somme_nb_republican = list_republicain[0] + list_republicain[1]
+            precision = list_republicain[0] / somme_nb_republican
+
+            # Calcule du rappel
+            somme_reponse_republican = list_republicain[0] + list_democrat[0]
+            rappel = list_republicain[0] / somme_reponse_republican
+
+            print("\nDATASET : house-votes-84")
+            print("METHODE : test\n")
             print("Matrice de confusion")
             print(list_republicain)
             print(list_democrat)
+            print("\nL'éxactitude")
+            print(exacitude)
+            print("\nLa précision")
+            print(precision)
+            print("\nLe rappel")
+            print(rappel)
+
 
         # Test pour les datasets Monks
         if dataset == 2:
@@ -412,9 +562,29 @@ class Knn:  # nom de la class à changer
                         if int(prediction[0]) == 0:
                             list_classe_1[0] += 1
 
+            # Calcule de l'éxactitude
+            somme_bonnes_reponses = list_classe_0[0] + list_classe_1[1]
+            exacitude = somme_bonnes_reponses / self.test_list_length
+
+            # Calcule de la précision
+            somme_nb_classe_0 = list_classe_0[0] + list_classe_0[1]
+            precision = list_classe_0[0] / somme_nb_classe_0
+
+            # Calcule du rappel
+            somme_reponse_classe_0 = list_classe_0[0] + list_classe_1[0]
+            rappel = list_classe_0[0] / somme_reponse_classe_0
+
+            print("\nDATASET : house-votes-84")
+            print("METHODE : train\n")
             print("Matrice de confusion")
             print(list_classe_0)
             print(list_classe_1)
+            print("\nL'éxactitude")
+            print(exacitude)
+            print("\nLa précision")
+            print(precision)
+            print("\nLe rappel")
+            print(rappel)
 
     def valeure_la_plus_frequente(self, list_label_voisin):
         """"
