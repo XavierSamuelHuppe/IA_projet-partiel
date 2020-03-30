@@ -61,7 +61,7 @@ def load_iris_dataset(train_ratio):
     train = np.array(train_list)
     train_labels = np.array(train_labels_list)
 
-    for i in range(trainingFlowers, (testingFlowers + testingFlowers - 1)):
+    for i in range(trainingFlowers, (testingFlowers + trainingFlowers - 1)):
         line = lineList[i]
         test_list.append([line[0], line[1], line[2], line[3]])
         test_labels_list.append(line[4])
@@ -148,7 +148,7 @@ def load_congressional_dataset(train_ratio):
     train = np.array(train_list)
     train_labels = np.array(train_labels_list)
 
-    for i in range(training_congres, (testing_congres + testing_congres - 1)):
+    for i in range(training_congres, (training_congres + testing_congres - 1)):
         line = line_list[i]
         test_list.append([line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8], line[9], line[10], line[11], line[12], line[13], line[14], line[15], line[16]])
         test_labels_list.append(line[0])

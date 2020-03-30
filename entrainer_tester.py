@@ -18,42 +18,42 @@ En gros, vous allez :
 """
 
 # Initializer vos paramètres
-a = load_datasets.load_iris_dataset(0.5,)
-b = load_datasets.load_congressional_dataset(0.5)
-c = load_datasets.load_monks_dataset(2)
-
-d = Knn.Knn()
-d.train(a[0], a[1], 0)
-d.test(a[2], a[3], 0)
 
 
-e = Knn.Knn()
-e.train(b[0], b[1], 1)
-e.test(b[2], b[3], 1)
-
-f = Knn.Knn()
-f.train(c[0], c[1], 2)
-f.test(c[2], c[3], 2)
 
 # Initializer/instanciez vos classifieurs avec leurs paramètres
-
-
-
+classifieur_Knn_iris = Knn.Knn()
+classifieur_Knn_congressional = Knn.Knn()
+classifieur_Knn_monks_1 = Knn.Knn()
+classifieur_Knn_monks_2 = Knn.Knn()
+classifieur_Knn_monks_3 = Knn.Knn()
+classifieur_bayes_naif_iris = BayesNaif.BayesNaif()
 
 
 # Charger/lire les datasets
 
-
+dataset_iris = load_datasets.load_iris_dataset(0.7)
+dataset_congressional = load_datasets.load_congressional_dataset(0.7)
+dataset_monks_1 = load_datasets.load_monks_dataset(1)
+dataset_monks_2 = load_datasets.load_monks_dataset(2)
+dataset_monks_3 = load_datasets.load_monks_dataset(3)
 
 
 # Entrainez votre classifieur
 
-
-
-
+classifieur_Knn_iris.train(dataset_iris[0], dataset_iris[1], 0)
+classifieur_Knn_congressional.train(dataset_congressional[0], dataset_congressional[1], 1)
+classifieur_Knn_monks_1.train(dataset_monks_1[0], dataset_monks_1[1], 2)
+classifieur_Knn_monks_2.train(dataset_monks_2[0], dataset_monks_2[1], 2)
+classifieur_Knn_monks_3.train(dataset_monks_3[0], dataset_monks_3[1], 2)
 
 # Tester votre classifieur
 
+classifieur_Knn_iris.test(dataset_iris[2], dataset_iris[3], 0)
+classifieur_Knn_congressional.test(dataset_congressional[2], dataset_congressional[3], 1)
+classifieur_Knn_monks_1.test(dataset_monks_1[2], dataset_monks_1[3], 2)
+classifieur_Knn_monks_2.test(dataset_monks_3[2], dataset_monks_3[3], 2)
+classifieur_Knn_monks_3.test(dataset_monks_3[2], dataset_monks_3[3], 2)
 
 
 

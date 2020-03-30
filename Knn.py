@@ -574,7 +574,7 @@ class Knn:  # nom de la class à changer
             somme_reponse_classe_0 = list_classe_0[0] + list_classe_1[0]
             rappel = list_classe_0[0] / somme_reponse_classe_0
 
-            print("\nDATASET : house-votes-84")
+            print("\nDATASET : Monks")
             print("METHODE : train\n")
             print("Matrice de confusion")
             print(list_classe_0)
