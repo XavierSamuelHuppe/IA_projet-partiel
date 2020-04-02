@@ -71,7 +71,7 @@ class Knn:  # nom de la class à changer
 
 
 
-        # Test pour le dataset bezdekIris
+        # Train pour le dataset bezdekIris
         if dataset == 0:
 
             list_setosa = [0, 0, 0]
@@ -171,7 +171,7 @@ class Knn:  # nom de la class à changer
             print("\nLe rappel du tri de la classe virginica")
             print(rappel_virginica)
 
-        # Test pour le dataset house-votes-84
+        # Train pour le dataset house-votes-84
         if dataset == 1:
 
             list_republicain = [0, 0]
@@ -228,7 +228,7 @@ class Knn:  # nom de la class à changer
             print("\nLe rappel")
             print(rappel)
 
-        # Test pour les datasets Monks
+        # Train pour les datasets Monks
         if dataset == 2:
 
             list_classe_0 = [0, 0]
