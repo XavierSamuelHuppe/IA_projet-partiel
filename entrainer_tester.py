@@ -27,7 +27,9 @@ classifieur_Knn_congressional = Knn.Knn()
 classifieur_Knn_monks_1 = Knn.Knn()
 classifieur_Knn_monks_2 = Knn.Knn()
 classifieur_Knn_monks_3 = Knn.Knn()
+
 classifieur_bayes_naif_iris = BayesNaif.BayesNaif()
+classifieur_bayes_naif_congressional = BayesNaif.BayesNaif()
 
 
 # Charger/lire les datasets
@@ -47,6 +49,10 @@ classifieur_Knn_monks_1.train(dataset_monks_1[0], dataset_monks_1[1], 2)
 classifieur_Knn_monks_2.train(dataset_monks_2[0], dataset_monks_2[1], 2)
 classifieur_Knn_monks_3.train(dataset_monks_3[0], dataset_monks_3[1], 2)
 
+classifieur_bayes_naif_iris.train(dataset_iris[0], dataset_iris[1], 0)
+classifieur_bayes_naif_congressional.train(dataset_congressional[0], dataset_congressional[1], 1)
+
+
 # Tester votre classifieur
 
 classifieur_Knn_iris.test(dataset_iris[2], dataset_iris[3], 0)
@@ -54,6 +60,9 @@ classifieur_Knn_congressional.test(dataset_congressional[2], dataset_congression
 classifieur_Knn_monks_1.test(dataset_monks_1[2], dataset_monks_1[3], 2)
 classifieur_Knn_monks_2.test(dataset_monks_3[2], dataset_monks_3[3], 2)
 classifieur_Knn_monks_3.test(dataset_monks_3[2], dataset_monks_3[3], 2)
+
+classifieur_bayes_naif_iris.test(dataset_iris[2], dataset_iris[3], 0)
+classifieur_bayes_naif_congressional.test(dataset_congressional[2], dataset_congressional[3], 1)
 
 
 
