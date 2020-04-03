@@ -254,7 +254,76 @@ class BayesNaif:  # nom de la class à changer
 
         # Test pour les datasets Monks
         if dataset == 2:
-            pass
+            entries_quantity = len(train)
+            entry_length = len(train[0])
+
+            compiled_attributes = []
+            for attribute_index in range(entry_length):
+                compiled_attributes.append({})
+
+            for entry_index in range(entries_quantity):
+                entry = train[entry_index]
+                entry_label = int(train_labels[entry_index])
+
+                if self.compiled_class_totals.get(entry_label) is None:
+                    self.compiled_class_totals[entry_label] = 0
+                self.compiled_class_totals[entry_label] += 1
+
+                for attribute_index in range(entry_length):
+                    attribute = entry[attribute_index]
+
+                    if compiled_attributes[attribute_index].get(entry_label) is None:
+                        compiled_attributes[attribute_index][entry_label] = {}
+                    if compiled_attributes[attribute_index][entry_label].get(attribute) is None:
+                        compiled_attributes[attribute_index][entry_label]['1'] = 0
+                        compiled_attributes[attribute_index][entry_label]['2'] = 0
+                        compiled_attributes[attribute_index][entry_label]['3'] = 0
+                        compiled_attributes[attribute_index][entry_label]['4'] = 0
+
+
+                    compiled_attributes[attribute_index][entry_label][attribute] += 1
+
+            self.compiled_attributes = compiled_attributes
+
+            #matrice de confusion
+            predictions = [[0, 0], [0, 0]]
+            for i in range(entries_quantity):
+                label = int(train_labels[i])
+                prediction = self.predict(train[i], label, 2)
+                predictions[label][prediction] += 1
+
+            # Calcule de l'éxactitude
+            all_good_answers = predictions[0][0] + predictions[1][1]
+            exactitude = all_good_answers / entries_quantity
+
+            # Calcule de la précision
+            precision = 1
+            class0_positives, class1_positives = predictions[0][0], predictions[1][1]
+            class0_false_positives = predictions[1][0]
+            class1_false_positives = predictions[0][1]
+            precision *= (class0_positives / (class0_positives + class0_false_positives))
+            precision *= (class1_positives / (class1_positives + class1_false_positives))
+
+            # Calcule du rappel
+            class0_false_negatives = predictions[0][1]
+            class1_false_negatives = predictions[1][0]
+            rappel = 1
+            rappel *= (class0_positives / (class0_positives + class0_false_negatives))
+            rappel *= (class1_positives / (class0_positives + class1_false_negatives))
+
+            print("\nDATASET : monks")
+            print("METHODE : train\n")
+            print("Matrice de confusion")
+            print("   prediction ->  0  |  1")
+            print("reality 0  :   ", predictions[0][0], "   ", predictions[0][1])
+            print("reality 1  :   ", predictions[1][0], "   ", predictions[1][1])
+            print("\nL'éxactitude")
+            print(exactitude)
+            print("\nLa précision")
+            print(precision)
+            print("\nLe rappel")
+            print(rappel)
+
 
     def predict(self, exemple, label, dataset):
         """
@@ -312,7 +381,41 @@ class BayesNaif:  # nom de la class à changer
 
         # Test pour les datasets Monks
         if dataset == 2:
-            pass
+            compiled_attributes = self.compiled_attributes
+            label = int(label)
+            global_total = 0
+            for value in self.compiled_class_totals.values():
+                global_total += value
+
+            class_total = self.compiled_class_totals.get(label)
+            probability_of_class = class_total / global_total
+            for attribute_index in range(len(exemple)):
+                exemple_attribute = exemple[attribute_index]
+                total_of_attribute_for_class = compiled_attributes[attribute_index][label][exemple_attribute]
+
+                probability_of_attribute_given_class = total_of_attribute_for_class / class_total
+                probability_of_class *= probability_of_attribute_given_class
+
+            counter_label = 1 if label == 0 else 0
+            counter_class_total = self.compiled_class_totals.get(counter_label)
+
+            probability_of_counter_class = counter_class_total / global_total
+            for attribute_index in range(len(exemple)):
+                exemple_attribute = exemple[attribute_index]
+                total_of_attribute_for_class = compiled_attributes[attribute_index][counter_label][exemple_attribute]
+
+                # Additive smoothing
+                # https://en.wikipedia.org/wiki/Additive_smoothing
+                if total_of_attribute_for_class == 0:
+                    total_of_attribute_for_class += 1
+
+                probability_of_attribute_given_class = total_of_attribute_for_class / counter_class_total
+                probability_of_counter_class *= probability_of_attribute_given_class
+
+            reduction = probability_of_class / probability_of_counter_class
+
+            expected_answer = label if reduction > 1 else counter_label
+            return expected_answer
 
     def prob_for_class(self, avg, variance, x):
         main_arg = 1/(math.sqrt(2*math.pi*variance))
@@ -447,7 +550,44 @@ class BayesNaif:  # nom de la class à changer
             print(rappel)
 
         if dataset == 2:
-            pass
+            # matrice de confusion
+            predictions = [[0, 0], [0, 0]]
+            for i in range(entries_quantity):
+                label = int(test_labels[i])
+                prediction = self.predict(test[i], label, 2)
+                predictions[label][prediction] += 1
+
+            # Calcule de l'éxactitude
+            all_good_answers = predictions[0][0] + predictions[1][1]
+            exactitude = all_good_answers / entries_quantity
+
+            # Calcule de la précision
+            precision = 1
+            class0_positives, class1_positives = predictions[0][0], predictions[1][1]
+            class0_false_positives = predictions[1][0]
+            class1_false_positives = predictions[0][1]
+            precision *= (class0_positives / (class0_positives + class0_false_positives))
+            precision *= (class1_positives / (class1_positives + class1_false_positives))
+
+            # Calcule du rappel
+            class0_false_negatives = predictions[0][1]
+            class1_false_negatives = predictions[1][0]
+            rappel = 1
+            rappel *= (class0_positives / (class0_positives + class0_false_negatives))
+            rappel *= (class1_positives / (class0_positives + class1_false_negatives))
+
+            print("\nDATASET : monks")
+            print("METHODE : test\n")
+            print("Matrice de confusion")
+            print("   prediction ->  0  |  1")
+            print("reality 0  :   ", predictions[0][0], "   ", predictions[0][1])
+            print("reality 1  :   ", predictions[1][0], "   ", predictions[1][1])
+            print("\nL'éxactitude")
+            print(exactitude)
+            print("\nLa précision")
+            print(precision)
+            print("\nLe rappel")
+            print(rappel)
 
 # Vous pouvez rajouter d'autres méthodes et fonctions,
 # il suffit juste de les commenter.

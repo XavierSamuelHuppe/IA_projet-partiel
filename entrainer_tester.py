@@ -45,7 +45,8 @@ dataset_monks_2 = load_datasets.load_monks_dataset(2)
 dataset_monks_3 = load_datasets.load_monks_dataset(3)
 
 
-# Entrainez votre classifieur
+#Entrainez votre classifieur
+print("\n")
 print("Entrainement du classifieur KNN avec le dataset Iris et un pourcentage d'entrainement de " + str(train_pourcentage_iris))
 classifieur_Knn_iris.train(dataset_iris[0], dataset_iris[1], num_datset_iris)
 print("---------------------------------------------------------\n")
@@ -54,11 +55,11 @@ classifieur_Knn_congressional.train(dataset_congressional[0], dataset_congressio
 print("---------------------------------------------------------\n")
 print("Entrainement du classifieur KNN avec le dataset Monks_1")
 classifieur_Knn_monks_1.train(dataset_monks_1[0], dataset_monks_1[1], num_dataset_monks)
+print("---------------------------------------------------------\n")
 print("Entrainement du classifieur KNN avec le dataset Monks_2")
-print("---------------------------------------------------------\n")
 classifieur_Knn_monks_2.train(dataset_monks_2[0], dataset_monks_2[1], num_dataset_monks)
-print("Entrainement du classifieur KNN avec le dataset Monks_3")
 print("---------------------------------------------------------\n")
+print("Entrainement du classifieur KNN avec le dataset Monks_3")
 classifieur_Knn_monks_3.train(dataset_monks_3[0], dataset_monks_3[1], num_dataset_monks)
 
 print("---------------------------------------------------------\n")
@@ -74,15 +75,11 @@ print("---------------------------------------------------------\n")
 print("Entrainement du classifieur Bayes Naif avec le dataset Monks_2")
 classifieur_bayes_naif_monks_2.train(dataset_monks_2[0], dataset_monks_2[1], 2)
 print("---------------------------------------------------------\n")
-print("Entrainement du classifieur Bayes Naif avec le dataset Monks_2")
+print("Entrainement du classifieur Bayes Naif avec le dataset Monks_3")
 classifieur_bayes_naif_monks_3.train(dataset_monks_3[0], dataset_monks_3[1], 2)
 print("---------------------------------------------------------\n")
 
-classifieur_bayes_naif_iris.train(dataset_iris[0], dataset_iris[1], 0)
-classifieur_bayes_naif_congressional.train(dataset_congressional[0], dataset_congressional[1], 1)
-
-
-# Tester votre classifieur
+#Tester votre classifieur
 
 print("Test du classifieur KNN avec le dataset Iris et un pourcentage de test de" + str(1 - train_pourcentage_iris))
 classifieur_Knn_iris.test(dataset_iris[2], dataset_iris[3], num_datset_iris)
@@ -93,8 +90,8 @@ print("---------------------------------------------------------\n")
 print("Test du classifieur KNN avec le dataset Monks_1")
 classifieur_Knn_monks_1.test(dataset_monks_1[2], dataset_monks_1[3], num_dataset_monks)
 print("---------------------------------------------------------\n")
-print("Test du classifieur KNN avec le dataset Monks_3")
-classifieur_Knn_monks_2.test(dataset_monks_3[2], dataset_monks_3[3], num_dataset_monks)
+print("Test du classifieur KNN avec le dataset Monks_2")
+classifieur_Knn_monks_2.test(dataset_monks_2[2], dataset_monks_2[3], num_dataset_monks)
 print("---------------------------------------------------------\n")
 print("Test du classifieur KNN avec le dataset Monks_3")
 classifieur_Knn_monks_3.test(dataset_monks_3[2], dataset_monks_3[3], num_dataset_monks)
