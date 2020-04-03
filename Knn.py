@@ -71,7 +71,7 @@ class Knn:  # nom de la class à changer
 
 
 
-        # Train pour le dataset bezdekIris
+        # Test pour le dataset bezdekIris
         if dataset == 0:
 
             list_setosa = [0, 0, 0]
@@ -171,7 +171,7 @@ class Knn:  # nom de la class à changer
             print("\nLe rappel du tri de la classe virginica")
             print(rappel_virginica)
 
-        # Train pour le dataset house-votes-84
+        # Test pour le dataset house-votes-84
         if dataset == 1:
 
             list_republicain = [0, 0]
@@ -228,7 +228,7 @@ class Knn:  # nom de la class à changer
             print("\nLe rappel")
             print(rappel)
 
-        # Train pour les datasets Monks
+        # Test pour les datasets Monks
         if dataset == 2:
 
             list_classe_0 = [0, 0]
@@ -273,7 +273,7 @@ class Knn:  # nom de la class à changer
             somme_reponse_classe_0 = list_classe_0[0] + list_classe_1[0]
             rappel = list_classe_0[0] / somme_reponse_classe_0
 
-            print("\nDATASET : house-votes-84")
+            print("\nDATASET : monks")
             print("METHODE : train\n")
             print("Matrice de confusion")
             print(list_classe_0)
