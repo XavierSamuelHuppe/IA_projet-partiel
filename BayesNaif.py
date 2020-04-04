@@ -304,19 +304,13 @@ class BayesNaif:  # nom de la class à changer
             exactitude = all_good_answers / entries_quantity
 
             # Calcule de la précision
-            precision = 1
             class0_positives, class1_positives = predictions[0][0], predictions[1][1]
             class0_false_positives = predictions[1][0]
-            class1_false_positives = predictions[0][1]
-            precision *= (class0_positives / (class0_positives + class0_false_positives))
-            precision *= (class1_positives / (class1_positives + class1_false_positives))
+            precision = (class0_positives / (class0_positives + class0_false_positives))
 
             # Calcule du rappel
             class0_false_negatives = predictions[0][1]
-            class1_false_negatives = predictions[1][0]
-            rappel = 1
-            rappel *= (class0_positives / (class0_positives + class0_false_negatives))
-            rappel *= (class1_positives / (class0_positives + class1_false_negatives))
+            rappel = (class0_positives / (class0_positives + class0_false_negatives))
 
             print("\nDATASET : monks")
             print("METHODE : train\n")
@@ -575,19 +569,13 @@ class BayesNaif:  # nom de la class à changer
             exactitude = all_good_answers / entries_quantity
 
             # Calcule de la précision
-            precision = 1
             class0_positives, class1_positives = predictions[0][0], predictions[1][1]
             class0_false_positives = predictions[1][0]
-            class1_false_positives = predictions[0][1]
-            precision *= (class0_positives / (class0_positives + class0_false_positives))
-            precision *= (class1_positives / (class1_positives + class1_false_positives))
+            precision = (class0_positives / (class0_positives + class0_false_positives))
 
             # Calcule du rappel
             class0_false_negatives = predictions[0][1]
-            class1_false_negatives = predictions[1][0]
-            rappel = 1
-            rappel *= (class0_positives / (class0_positives + class0_false_negatives))
-            rappel *= (class1_positives / (class0_positives + class1_false_negatives))
+            rappel = (class0_positives / (class0_positives + class0_false_negatives))
 
             print("\nDATASET : monks")
             print("METHODE : test\n")
