@@ -144,23 +144,21 @@ class BayesNaif:  # nom de la class à changer
             exactitude = all_good_answers / entries_quantity
 
             # Calcule de la précision
-            precision = 1
             class0_positives, class1_positives, class2_positives = predictions[0][0], predictions[1][1], predictions[2][2]
             class0_false_positives = predictions[1][0] + predictions[2][0]
             class1_false_positives = predictions[0][1] + predictions[2][1]
             class2_false_positives = predictions[0][2] + predictions[1][2]
-            precision *= (class0_positives / (class0_positives+class0_false_positives))
-            precision *= (class1_positives / (class1_positives+class1_false_positives))
-            precision *= (class2_positives / (class2_positives+class2_false_positives))
+            precision_setosa = (class0_positives / (class0_positives+class0_false_positives))
+            precision_versicolor = (class1_positives / (class1_positives+class1_false_positives))
+            precision_virginica = (class2_positives / (class2_positives+class2_false_positives))
 
             # Calcule du rappel
             class0_false_negatives = predictions[0][1] + predictions[0][2]
             class1_false_negatives = predictions[1][0] + predictions[1][2]
             class2_false_negatives = predictions[2][0] + predictions[2][1]
-            rappel = 1
-            rappel *= (class0_positives / (class0_positives+class0_false_negatives))
-            rappel *= (class1_positives / (class0_positives+class1_false_negatives))
-            rappel *= (class2_positives / (class0_positives+class2_false_negatives))
+            rappel_setosa = (class0_positives / (class0_positives+class0_false_negatives))
+            rappel_versicolor = (class1_positives / (class0_positives+class1_false_negatives))
+            rappel_virginica = (class2_positives / (class0_positives+class2_false_negatives))
 
             print("\nDATASET : bezdekIris")
             print("METHODE : train\n")
@@ -171,10 +169,19 @@ class BayesNaif:  # nom de la class à changer
             print("reality virginica :   ", predictions[2][0], "       ", predictions[2][1], "       ", predictions[2][2])
             print("\nL'éxactitude")
             print(exactitude)
-            print("\nLa précision")
-            print(precision)
-            print("\nLe rappel")
-            print(rappel)
+            print("\nLa précision du tri de la classe setosa")
+            print(precision_setosa)
+            print("\nLe rappel du tri de la classe setosa")
+            print(rappel_setosa)
+            print("\nLa précision du tri de la classe versicolor")
+            print(precision_versicolor)
+            print("\nLe rappel du tri de la classe versicolor")
+            print(rappel_versicolor)
+            print("\nLa précision du tri de la classe virginica")
+            print(precision_virginica)
+            print("\nLe rappel du tri de la classe virginica")
+            print(rappel_virginica)
+
 
         # Test pour le dataset house-votes-84
         if dataset == 1:
@@ -465,24 +472,22 @@ class BayesNaif:  # nom de la class à changer
             exactitude = all_good_answers / entries_quantity
 
             # Calcule de la précision
-            precision = 1
             class0_positives, class1_positives, class2_positives = predictions[0][0], predictions[1][1], predictions[2][
                 2]
             class0_false_positives = predictions[1][0] + predictions[2][0]
             class1_false_positives = predictions[0][1] + predictions[2][1]
             class2_false_positives = predictions[0][2] + predictions[1][2]
-            precision *= (class0_positives / (class0_positives + class0_false_positives))
-            precision *= (class1_positives / (class1_positives + class1_false_positives))
-            precision *= (class2_positives / (class2_positives + class2_false_positives))
+            precision_setosa = (class0_positives / (class0_positives + class0_false_positives))
+            precision_versicolor = (class1_positives / (class1_positives + class1_false_positives))
+            precision_virginica = (class2_positives / (class2_positives + class2_false_positives))
 
             # Calcule du rappel
             class0_false_negatives = predictions[0][1] + predictions[0][2]
             class1_false_negatives = predictions[1][0] + predictions[1][2]
             class2_false_negatives = predictions[2][0] + predictions[2][1]
-            rappel = 1
-            rappel *= (class0_positives / (class0_positives + class0_false_negatives))
-            rappel *= (class1_positives / (class0_positives + class1_false_negatives))
-            rappel *= (class2_positives / (class0_positives + class2_false_negatives))
+            rappel_setosa = (class0_positives / (class0_positives + class0_false_negatives))
+            rappel_versicolor = (class1_positives / (class0_positives + class1_false_negatives))
+            rappel_virginica = (class2_positives / (class0_positives + class2_false_negatives))
 
             print("\nDATASET : bezdekIris")
             print("METHODE : test\n")
@@ -496,10 +501,18 @@ class BayesNaif:  # nom de la class à changer
                   predictions[2][2])
             print("\nL'éxactitude")
             print(exactitude)
-            print("\nLa précision")
-            print(precision)
-            print("\nLe rappel")
-            print(rappel)
+            print("\nLa précision du tri de la classe setosa")
+            print(precision_setosa)
+            print("\nLe rappel du tri de la classe setosa")
+            print(rappel_setosa)
+            print("\nLa précision du tri de la classe versicolor")
+            print(precision_versicolor)
+            print("\nLe rappel du tri de la classe versicolor")
+            print(rappel_versicolor)
+            print("\nLa précision du tri de la classe virginica")
+            print(precision_virginica)
+            print("\nLe rappel du tri de la classe virginica")
+            print(rappel_virginica)
 
         if dataset == 1:
             # matrice de confusion
